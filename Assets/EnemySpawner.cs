@@ -14,7 +14,7 @@ public class EnemySpawner : MonoBehaviour {
     {
         cam = Camera.main;
 
-        InvokeRepeating("Spawn", spawnTime, spawnTime);
+        InvokeRepeating("SpawnWaves", spawnTime, spawnTime);
     }
 
     // Update is called once per frame

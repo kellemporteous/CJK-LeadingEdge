@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class BaseEnemy : MonoBehaviour {
 
+    public GameObject target;
+
 	// Use this for initialization
 	void Start ()
     {
-		
+
+        target = GameObject.FindGameObjectWithTag("player");
+
 	}
 	
 	// Update is called once per frame
@@ -16,7 +20,7 @@ public class BaseEnemy : MonoBehaviour {
 		
 	}
 
-    protected virtual void movement()
+    protected virtual void Movement()
     {
 
     }
