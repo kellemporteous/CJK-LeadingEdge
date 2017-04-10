@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class RedBird : BaseEnemy {
 
-    public float moveSpeed;
     public float freq;
     public float magn;
 
@@ -26,13 +25,16 @@ public class RedBird : BaseEnemy {
 	void Update ()
     {
         Movement();
-
     }
+
+   
 
     protected override void Movement()
     {
         pos += transform.up * Time.deltaTime * moveSpeed;
         transform.position = pos + axis * Mathf.Sin(Time.time * freq) * magn;
+        transform.position = Vector3.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
+
     }
 
 }

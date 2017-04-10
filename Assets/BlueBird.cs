@@ -4,29 +4,20 @@ using UnityEngine;
 
 public class BlueBird : BaseEnemy {
 
-    public float delay;
-    public float duration;
-
-    private float startTime;
-    private float elapsedTime;
-    
-	// Use this for initialization
-	void Start ()
-    {
-        startTime = delay;
-	}
 	
 	// Update is called once per frame
-	void Update () {
-		
-	}
+	void Update ()
+    {
+        if (player != null)
+        {
+            Movement();
+        }
+    }
 
     protected override void Movement()
     {
-        elapsedTime += Time.deltaTime;
-        if (elapsedTime >= delay)
-        {
-            this.transform.position = Vector3.Lerp(transform.position, target.transform.position, (Time.time - delay) / duration);
-        }
+        transform.position = Vector3.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
+        //this.gameObject.transform.LookAt(new Vector3(0.0f, 0.0f, target.transform.position.z));
+        //transform.position += transform.forward * moveSpeed * Time.deltaTime;
     }
 }

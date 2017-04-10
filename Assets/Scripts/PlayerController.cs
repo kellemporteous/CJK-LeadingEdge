@@ -10,12 +10,12 @@ public class PlayerController : MonoBehaviour {
     public float heightTravelled;
     public Vector3 lastPosition;
 
-    public Vector3 previousPosition;
+    public float startPosition;
     public float calculatedDistance;
 
     void Awake()
     {
-        previousPosition = transform.position;
+        startPosition = transform.position.y;
     }
 
     // Use this for initialization
@@ -28,9 +28,8 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        calculatedDistance += (transform.position - previousPosition).magnitude;
-        previousPosition = transform.position;
-        heightTravelled = Mathf.Round(calculatedDistance/2);
+        calculatedDistance = (transform.position.y - startPosition);
+        heightTravelled = Mathf.Round(calculatedDistance/5);
 	}
 
     void FixedUpdate()
