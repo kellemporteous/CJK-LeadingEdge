@@ -7,8 +7,8 @@ public class CameraControls : MonoBehaviour {
     //necessary varibles go here
     public GameObject player;
 
-    public float leftConstraint = Screen.width;
-    public float rightConstraint = Screen.width;
+    private float leftConstraint = Screen.width;
+    private float rightConstraint = Screen.width;
     public float buffer = 0f;
     public float distZ;
 
@@ -37,19 +37,19 @@ public class CameraControls : MonoBehaviour {
     {
         if (player.transform.position.y > 0)
         {
-            if (player.transform.position.y > transform.position.y + 4.5f)
+            if (player.transform.position.y > transform.position.y + 4.0f)
             {
-                this.transform.position = new Vector3(transform.position.x, player.transform.position.y - 4.5f, -10);
+                this.transform.position = new Vector3(transform.position.x, player.transform.position.y - 4.0f, -10);
             }
         }
 
         if (player.transform.position.x < leftConstraint - buffer)
         {
-            player.transform.position = new Vector3(rightConstraint + buffer, transform.position.y, 0);
+            player.transform.position = new Vector3(rightConstraint + buffer, player.transform.position.y, distZ);
         }
-        if (player.transform.position.x > rightConstraint + buffer)
+        else if (player.transform.position.x > rightConstraint + buffer)
         {
-            player.transform.position = new Vector3(leftConstraint - buffer, transform.position.y, 0);
+            player.transform.position = new Vector3(leftConstraint - buffer, player.transform.position.y, distZ);
         }
     }
 }

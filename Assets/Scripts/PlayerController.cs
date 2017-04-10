@@ -6,19 +6,31 @@ public class PlayerController : MonoBehaviour {
 
     public Rigidbody2D rb;
     public float moveSpeed;
-  
 
+    public float heightTravelled;
+    public Vector3 lastPosition;
 
-	// Use this for initialization
-	void Start () {
+    public Vector3 previousPosition;
+    public float calculatedDistance;
 
-        rb = GetComponent<Rigidbody2D>();
-		
+    void Awake()
+    {
+        previousPosition = transform.position;
+    }
+
+    // Use this for initialization
+    void Start ()
+    {
+        lastPosition = transform.position;
+        rb = GetComponent<Rigidbody2D>();	
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
+	void Update ()
+    {
+        calculatedDistance += (transform.position - previousPosition).magnitude;
+        previousPosition = transform.position;
+        heightTravelled = Mathf.Round(calculatedDistance/2);
 	}
 
     void FixedUpdate()
