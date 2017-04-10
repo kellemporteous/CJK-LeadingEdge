@@ -9,7 +9,7 @@ public class CameraControls : MonoBehaviour {
 
     public float leftConstraint = Screen.width;
     public float rightConstraint = Screen.width;
-    public float buffer = 2.0f;
+    public float buffer = 0f;
     public float distZ;
 
     Camera cam;
@@ -43,13 +43,13 @@ public class CameraControls : MonoBehaviour {
             }
         }
 
-        if (transform.position.x < leftConstraint - buffer)
+        if (player.transform.position.x < leftConstraint - buffer)
         {
-            transform.position = new Vector3(rightConstraint + buffer, transform.position.y, transform.position.z);
+            player.transform.position = new Vector3(rightConstraint + buffer, transform.position.y, 0);
         }
-        if (transform.position.x > rightConstraint + buffer)
+        if (player.transform.position.x > rightConstraint + buffer)
         {
-            transform.position = new Vector3(leftConstraint - buffer, transform.position.y, transform.position.z);
+            player.transform.position = new Vector3(leftConstraint - buffer, transform.position.y, 0);
         }
     }
 }
