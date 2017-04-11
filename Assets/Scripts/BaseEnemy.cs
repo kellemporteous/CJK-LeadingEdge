@@ -8,24 +8,25 @@ public class BaseEnemy : MonoBehaviour {
     public float moveSpeed;
     public Vector3 target;
 
+
     // Use this for initialization
     void Start ()
     {
         StartCoroutine(LockOn());
-	}
+    }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        
-	}
+ 
+    }
 
     protected virtual void Movement()
     {
 
     }
 
-    IEnumerator LockOn()
+    protected IEnumerator LockOn()
     {
         yield return new WaitForSeconds(2);
         player = GameObject.FindGameObjectWithTag("Player");

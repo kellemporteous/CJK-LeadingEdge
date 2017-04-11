@@ -9,6 +9,8 @@ public class CameraControls : MonoBehaviour {
 
     private float leftConstraint = Screen.width;
     private float rightConstraint = Screen.width;
+    private float bottomConstraint = Screen.height;
+    private float topConstraint = Screen.height;
     public float buffer = 0f;
     public float distZ;
 
@@ -21,6 +23,8 @@ public class CameraControls : MonoBehaviour {
 
         leftConstraint = cam.ScreenToWorldPoint(new Vector3(0, 0, distZ)).x;
         rightConstraint = cam.ScreenToWorldPoint(new Vector3(Screen.width, 0, distZ)).x;
+        bottomConstraint = cam.ScreenToWorldPoint(new Vector3(0.0f, 0.0f, distZ)).y;
+        topConstraint = cam.ScreenToWorldPoint(new Vector3(0.0f, Screen.height, distZ)).y;
     }
     // Use this for initialization
     void Start ()
@@ -35,21 +39,22 @@ public class CameraControls : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
-        if (player.transform.position.y > 0)
-        {
-            if (player.transform.position.y > transform.position.y + 4.0f)
-            {
-                this.transform.position = new Vector3(transform.position.x, player.transform.position.y - 4.0f, -10);
-            }
-        }
 
         if (player.transform.position.x < leftConstraint - buffer)
         {
             player.transform.position = new Vector3(rightConstraint + buffer, player.transform.position.y, distZ);
         }
-        else if (player.transform.position.x > rightConstraint + buffer)
+        if (player.transform.position.x > rightConstraint + buffer)
         {
             player.transform.position = new Vector3(leftConstraint - buffer, player.transform.position.y, distZ);
+        }
+        if (transform.position.y < bottomConstraint - buffer)
+        {
+
+        }
+        if (player.transform.position.y >= topConstraint + buffer)
+        {
+            player.transform.position = new Vector3(player.transform.position.x, topConstraint - buffer, distZ);
         }
     }
 }
