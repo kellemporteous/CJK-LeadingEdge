@@ -6,6 +6,8 @@ public class CameraControls : MonoBehaviour {
 
     //necessary varibles go here
     public GameObject player;
+    PlayerController playerInfo;
+
 
     private float leftConstraint = Screen.width;
     private float rightConstraint = Screen.width;
@@ -31,8 +33,8 @@ public class CameraControls : MonoBehaviour {
     {
         // this is so that the player is attached to the correct gameobject
         player = GameObject.FindGameObjectWithTag("Player");
+        playerInfo = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 
-      
     }
 
 
@@ -55,6 +57,11 @@ public class CameraControls : MonoBehaviour {
         if (player.transform.position.y >= topConstraint + buffer)
         {
             player.transform.position = new Vector3(player.transform.position.x, topConstraint - buffer, distZ);
+        }
+
+        if (player.transform.position.y < bottomConstraint - buffer)
+        {
+            playerInfo.Death();
         }
     }
 }

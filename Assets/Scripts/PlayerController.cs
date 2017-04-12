@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
 
@@ -13,15 +14,21 @@ public class PlayerController : MonoBehaviour {
     public bool isSwooping = false;
 
     public float heightTravelled;
+    public float heightModifier;
+    public float staminaDrain = 0.5f;
     //public Vector3 lastPosition;
 
 
     // Use this for initialization
     void Start ()
     {
+
+        heightTravelled = 0;
+
         //lastPosition = transform.position;
         rb = GetComponent<Rigidbody2D>();
 
+        
         maxSpeed = moveSpeed * 4;
         currentStamia = maxStamina;
     }
@@ -30,19 +37,34 @@ public class PlayerController : MonoBehaviour {
 	void Update ()
     {
 
-        heightTravelled = Time.time;
-        
+        heightTravelled += rb.velocity.magnitude * heightModifier;
+        PlayerWin();
+        //Scene scene = SceneManager.GetActiveScene();
 
-        Controls();
+        //if (scene.name != "Level 1")
+        //{
+        //    SceneManager.UnloadScene("Level 1");
+        //}
+
+        if (currentStamia > maxStamina)
+        {
+            currentStamia = maxStamina;
+        }
+
+        if (currentStamia > 0)
+        {
+            Controls();
+        }
 
         if (isSwooping == true)
         {
-            currentStamia -= currentStamia * 2;
+            currentStamia -= staminaDrain;
+            //heightModifier = 2;
         }
 
         else if (currentStamia <= 0)
         {
-            
+            //heightModifier = 1;
             currentStamia = 0;
             isSwooping = false;
         }
@@ -50,9 +72,21 @@ public class PlayerController : MonoBehaviour {
 
     void FixedUpdate()
     {
-
     }
 
+
+    void PlayerWin()
+    {
+        if (heightTravelled >= 500)
+        {
+            SceneManager.LoadScene("Win Screen");
+        }
+    }
+
+    public void Death()
+    {
+        SceneManager.LoadScene("Lose Screen");
+    }
 
     void Controls()
     {

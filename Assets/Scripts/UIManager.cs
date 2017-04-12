@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour {
 
     PlayerController player;
 
     public GameObject pauseMenu;
-    public Scrollbar powerBar;
+    //public Scrollbar powerBar;
     public float startPower;
     public bool increasing = false;
 
@@ -20,7 +21,7 @@ public class UIManager : MonoBehaviour {
 	void Start ()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-
+        player.heightTravelled = 0.0f;
 	}
 	
 	// Update is called once per frame
@@ -49,9 +50,26 @@ public class UIManager : MonoBehaviour {
         }
     }
 
-    public void PowerPercentage(float value)
+    public void StartButton()
+    {
+        SceneManager.LoadScene("Level 1");
+        Time.timeScale = 1;
+    }
+    public void Restart()
+    {
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
+        Time.timeScale = 1;
+    }
+
+    public void Quit()
+    {
+        SceneManager.LoadScene("Main Menu");
+    }
+
+    /*public void PowerPercentage(float value)
     {
         startPower -= value;
         powerBar.size = startPower / 100.0f;
-    }
+    }*/
 }

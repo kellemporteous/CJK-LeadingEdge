@@ -58,8 +58,8 @@ public class Spawner : MonoBehaviour {
     {
         Vector2 spawnPosition = new Vector2(Random.Range(0, Screen.width), Random.Range(0, Screen.height));
         Quaternion spawnRotation = Quaternion.identity;
-        int collectableTypeIndex = Random.Range(0, enemies.Length);
+        int collectableTypeIndex = Random.Range(0, collectables.Length);
 
-        Instantiate(enemies[collectableTypeIndex] as GameObject, cam.ScreenToWorldPoint(new Vector3(spawnPosition.x, spawnPosition.y, 10)), spawnRotation);          
+        Instantiate(collectables[collectableTypeIndex] as GameObject, cam.ScreenToWorldPoint(new Vector3(spawnPosition.x, spawnPosition.y, 10)), spawnRotation);          
     }
 }

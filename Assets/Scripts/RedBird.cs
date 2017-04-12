@@ -16,10 +16,6 @@ public class RedBird : BaseEnemy {
         tempPos = transform.position;
     }
 
-    void Update()
-    {
-
-    }
 
     // Update is called once per frame
     void FixedUpdate ()
