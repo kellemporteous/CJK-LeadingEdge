@@ -13,6 +13,7 @@ public class PowerBar : MonoBehaviour {
     public float powerCounter;
     public float powerBoost;
 
+    public bool isTriggered;
 
 	// Use this for initialization
 	void Start ()
@@ -40,6 +41,8 @@ public class PowerBar : MonoBehaviour {
         if (Input.GetKeyUp("e"))
         {
             player.rb.AddForce(Vector3.up * powerBoost, ForceMode2D.Impulse);
+
+            isTriggered = true;
         }
 
         powerBoost = powerPercentage;
