@@ -6,8 +6,10 @@ public class WindGust : MonoBehaviour {
 
     PlayerController player;
     public float deathCounter;
+    public float windBoost = 15.0f;
 
-    public float staminaAdd = 25.0f;
+    public float fallSpeed;
+
 	// Use this for initialization
 	void Start ()
     {
@@ -24,18 +26,20 @@ public class WindGust : MonoBehaviour {
             deathCounter = 10.0f;
             Despawn();
         }
+
+        transform.Translate(Vector2.down * fallSpeed * Time.deltaTime);
     }
 
     void Despawn()
     {
         Destroy(gameObject);
     }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player")
         {
-            player.currentStamia = player.currentStamia + staminaAdd;
-            Destroy(gameObject);
+            player.rb.AddForce(Vector3.up * windBoost, ForceMode2D.Impulse);
         }
     }
 }

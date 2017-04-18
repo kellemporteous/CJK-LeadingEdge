@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+
+
         if (PlayerPrefs.HasKey("Score"))
         {
             score = PlayerPrefs.GetInt("Score");

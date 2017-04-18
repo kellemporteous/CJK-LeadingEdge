@@ -90,11 +90,9 @@ public class PlayerController : MonoBehaviour {
 
     void Controls()
     {
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
-        
+        float moveHorizontal = Input.GetAxis("Horizontal");        
 
-        Vector2 movement = new Vector2 (moveHorizontal, moveVertical);
+        Vector2 movement = new Vector2 (moveHorizontal, 0);
         rb.AddForce(movement * moveSpeed);
 
         if (Input.GetKeyDown("space"))
