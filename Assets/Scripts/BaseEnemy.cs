@@ -9,8 +9,18 @@ public class BaseEnemy : MonoBehaviour {
     public Vector3 target;
     public float deathCounter;
 
+    public EnemyState enemyState;
+
+    public int minDistance = 6;
+
     PlayerController playerInfo;
 
+
+    public enum EnemyState
+    {
+        Idle,
+        Attack
+    }
 
     // Use this for initialization
     void Start ()
@@ -30,10 +40,20 @@ public class BaseEnemy : MonoBehaviour {
             deathCounter = 5.0f;
             Despawn();
         }
+
+        EnemyLogic();
+        EnemyBehaviour();
+
     }
 
     protected virtual void Movement()
     {
+
+    }
+
+    void Idle()
+    {
+        transform.Translate(Vector2.down * GameManager.inst.FallSpeed * Time.deltaTime);
 
     }
 
@@ -48,6 +68,34 @@ public class BaseEnemy : MonoBehaviour {
     void Despawn()
     {
         Destroy(gameObject);
+    }
+
+    void EnemyLogic()
+    {
+
+        var currentDiff = playerInfo.transform.position - transform.position;
+        var currentDistance = currentDiff.magnitude;
+
+        if (currentDistance <= minDistance)
+        {
+                //STATE TRANSITION: ATTACK
+                enemyState = EnemyState.Attack;
+
+        }
+    }
+
+    void EnemyBehaviour()
+    {
+        switch (enemyState)
+        {
+            case EnemyState.Idle:
+                Idle();//Idle
+                break;
+
+            case EnemyState.Attack:
+                Movement();
+                break;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)

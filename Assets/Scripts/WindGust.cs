@@ -7,8 +7,7 @@ public class WindGust : MonoBehaviour {
     PlayerController player;
     public float deathCounter;
     public float windBoost = 15.0f;
-
-    public float fallSpeed;
+    
 
 	// Use this for initialization
 	void Start ()
@@ -27,7 +26,7 @@ public class WindGust : MonoBehaviour {
             Despawn();
         }
 
-        transform.Translate(Vector2.down * fallSpeed * Time.deltaTime);
+        transform.Translate(Vector2.down * GameManager.inst.FallSpeed * Time.deltaTime);
     }
 
     void Despawn()

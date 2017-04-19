@@ -12,13 +12,13 @@ public class PowerBar : MonoBehaviour {
     public float barSpeed;
     public float powerCounter;
     public float powerBoost;
-
-    public bool isTriggered;
+    
 
 	// Use this for initialization
 	void Start ()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        player.rb.isKinematic = true;
 	}
 	
 	// Update is called once per frame
@@ -40,9 +40,10 @@ public class PowerBar : MonoBehaviour {
 
         if (Input.GetKeyUp("e"))
         {
+            player.rb.isKinematic = false;
             player.rb.AddForce(Vector3.up * powerBoost, ForceMode2D.Impulse);
-
-            isTriggered = true;
+            GameManager.inst.GoToLevelMain();
+            gameObject.SetActive(false);
         }
 
         powerBoost = powerPercentage;

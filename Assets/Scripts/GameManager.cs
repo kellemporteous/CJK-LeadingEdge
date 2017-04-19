@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,10 +9,42 @@ public class GameManager : MonoBehaviour {
     public int score = 0;
     public int highScore = 0;
 
+    [SerializeField]
+    private float fallSpeed = 1;
+    public Spawner spawner;
+    UIManager UI;
+
+
+    public float FallSpeed
+    {
+        get
+        {
+            if (state == State.LevelMain)
+                return fallSpeed;
+            else
+                return 0;
+        }
+    }
+
+    public static GameManager inst;
+
+    public enum State
+    {
+        Launch,
+        LevelMain
+    }
+
+    public State state;
+
+    private void Awake()
+    {
+        inst = this;
+    }
+
     // Use this for initialization
     void Start()
     {
-
+        UI = GameObject.FindGameObjectWithTag("UI Manager").GetComponent<UIManager>();
 
         if (PlayerPrefs.HasKey("Score"))
         {
@@ -32,11 +65,32 @@ public class GameManager : MonoBehaviour {
                 score = 0;
             }
         }
+        spawner.enabled = false;
     }
+
     // Update is called once per frame
     void Update()
     {
+        switch (state)
+        {
+            case State.Launch:
+                //launcher is enabled
+                //scrolling is disabled
+                break;
+            case State.LevelMain:
+                //launcheris disabled
+                //scrolling is enabled
+                break;
+            default:
+                break;
+        }
+    }
 
+    public void GoToLevelMain()
+    {
+        state = State.LevelMain;
+        spawner.enabled = true;
+        UI.startPrompt.enabled = false;
     }
 
     public void SaveScore()

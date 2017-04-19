@@ -9,23 +9,22 @@ public class UIManager : MonoBehaviour {
     PlayerController player;
 
     public GameObject pauseMenu;
-    //public Scrollbar powerBar;
-    public float startPower;
-    public bool increasing = false;
+
 
     public Slider staminaBar;
-
     public Text height;
+    public Text startPrompt;
 
 	// Use this for initialization
 	void Start ()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         player.heightTravelled = 0.0f;
-	}
-	
-	// Update is called once per frame
-	void Update ()
+
+    }
+
+    // Update is called once per frame
+    void Update ()
     {
         height.text = "Height: " + player.heightTravelled;
         Pause();
