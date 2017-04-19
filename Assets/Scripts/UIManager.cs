@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour {
     public Slider staminaBar;
     public Text height;
     public Text startPrompt;
+    public Text controlPrompt;
 
 	// Use this for initialization
 	void Start ()

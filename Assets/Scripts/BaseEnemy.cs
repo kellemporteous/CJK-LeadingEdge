@@ -53,7 +53,7 @@ public class BaseEnemy : MonoBehaviour {
 
     void Idle()
     {
-        transform.Translate(Vector2.down * GameManager.inst.FallSpeed * Time.deltaTime);
+        transform.Translate(Vector2.down * GameManager.inst.FallSpeed * Time.deltaTime * 2.0f);
 
     }
 

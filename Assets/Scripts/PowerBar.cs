@@ -26,7 +26,7 @@ public class PowerBar : MonoBehaviour {
     {
 
 
-        if (Input.GetKey("e"))
+        if (Input.GetKey("space"))
         {
 
             powerCounter += Time.deltaTime * barSpeed;
@@ -38,7 +38,7 @@ public class PowerBar : MonoBehaviour {
             powerPercentage = Mathf.PingPong(powerCounter, powerMax);
         }
 
-        if (Input.GetKeyUp("e"))
+        if (Input.GetKeyUp("space"))
         {
             player.rb.isKinematic = false;
             player.rb.AddForce(Vector3.up * powerBoost, ForceMode2D.Impulse);

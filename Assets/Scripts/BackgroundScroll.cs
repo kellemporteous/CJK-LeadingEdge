@@ -13,6 +13,7 @@ public class BackgroundScroll : MonoBehaviour {
 	void Update ()
     {
         //this may also need to be aware of the bg size to scale fallspeed by
-        GetComponent<Renderer>().material.mainTextureOffset = new Vector2(0f, (Time.time * GameManager.inst.FallSpeed) % 2);
+        GetComponent<Renderer>().material.mainTextureOffset = new Vector2(0f, (Time.time * GameManager.inst.FallSpeed * 0.1f) % 2);
+
     }
 }

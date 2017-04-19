@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour {
 
     public float heightTravelled;
     public float heightModifier;
-    public float staminaDrain = 0.5f;
+    public float staminaDrain;
     //public Vector3 lastPosition;
 
 
@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
 
         
-        maxSpeed = moveSpeed * 4;
+        maxSpeed += moveSpeed * 1.5f;
         currentStamia = maxStamina;
     }
 	
@@ -46,15 +46,13 @@ public class PlayerController : MonoBehaviour {
         //    SceneManager.UnloadScene("Level 1");
         //}
 
+        currentStamia += Time.deltaTime * 2.5f;
+
         if (currentStamia > maxStamina)
         {
             currentStamia = maxStamina;
         }
 
-        if (currentStamia > 0)
-        {
-            Controls();
-        }
 
         if (isSwooping == true)
         {
@@ -68,6 +66,8 @@ public class PlayerController : MonoBehaviour {
             currentStamia = 0;
             isSwooping = false;
         }
+
+        Controls();
     }
 
     void FixedUpdate()
@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour {
         SceneManager.LoadScene("Lose Screen");
     }
 
-    void Controls()
+    public void Controls()
     {
         float moveHorizontal = Input.GetAxis("Horizontal");        
 
@@ -98,7 +98,7 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetKeyDown("space"))
         {
             isSwooping = true;
-            rb.AddForce(movement * maxSpeed);
+            rb.AddForce(movement * maxSpeed, ForceMode2D.Impulse);
 
             
         }

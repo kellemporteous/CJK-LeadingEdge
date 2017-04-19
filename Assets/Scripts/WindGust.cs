@@ -22,7 +22,7 @@ public class WindGust : MonoBehaviour {
 
         if (deathCounter <= 0.0f)
         {
-            deathCounter = 10.0f;
+            deathCounter = 5.0f;
             Despawn();
         }
 

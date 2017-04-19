@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour {
     private float fallSpeed = 1;
     public Spawner spawner;
     UIManager UI;
+    PlayerController player;
 
 
     public float FallSpeed
@@ -45,6 +46,7 @@ public class GameManager : MonoBehaviour {
     void Start()
     {
         UI = GameObject.FindGameObjectWithTag("UI Manager").GetComponent<UIManager>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 
         if (PlayerPrefs.HasKey("Score"))
         {
@@ -66,6 +68,8 @@ public class GameManager : MonoBehaviour {
             }
         }
         spawner.enabled = false;
+        UI.staminaBar.enabled = false;
+        player.staminaDrain = 0.0f;
     }
 
     // Update is called once per frame
@@ -91,6 +95,10 @@ public class GameManager : MonoBehaviour {
         state = State.LevelMain;
         spawner.enabled = true;
         UI.startPrompt.enabled = false;
+        UI.controlPrompt.enabled = false;
+        UI.staminaBar.enabled = true;
+        player.staminaDrain = 0.5f;
+
     }
 
     public void SaveScore()
