@@ -108,10 +108,16 @@ public class PlayerController : MonoBehaviour {
 
     void PlayerWin()
     {
-        if (heightTravelled >= 500)
+        Scene scene = SceneManager.GetActiveScene();
+        if (scene.name == "Level 1" && heightTravelled >= 500)
         {
             SceneManager.LoadScene("Win Screen");
         }
+        else if (scene.name == "Level 2" && heightTravelled >= 1000)
+        {
+            SceneManager.LoadScene("Win Screen");
+        }
+
     }
 
     public void Death()
