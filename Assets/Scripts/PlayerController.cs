@@ -17,17 +17,15 @@ public class PlayerController : MonoBehaviour {
     public float heightModifier;
     public float staminaDrain;
 
-    Animation anim;
-    public AnimationClip playerIdle;
-    public AnimationClip playerDeath;
+    
 
     //public Vector3 lastPosition;
 
     public enum PlayerState
     {
-        idle,
-        boost,
-        death
+        Idle,
+        Boost,
+        Death
     }
 
     public PlayerState playerState;
@@ -35,8 +33,6 @@ public class PlayerController : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-
-        anim = GetComponent<Animation>();
 
         heightTravelled = 0;
 
@@ -83,26 +79,10 @@ public class PlayerController : MonoBehaviour {
         }
 
         Controls();
-        PlayerAnimation();
     }
 
     void FixedUpdate()
     {
-    }
-
-    void PlayerAnimation()
-    {
-        switch (playerState)
-        {
-            case PlayerState.idle:
-                anim.Play("playerIdle");
-                break;
-            case PlayerState.boost:
-                break;
-            case PlayerState.death:
-                anim.Play("playerDeath");
-                break;
-        }
     }
 
 
@@ -122,7 +102,7 @@ public class PlayerController : MonoBehaviour {
 
     public void Death()
     {
-        playerState = PlayerState.death;
+        playerState = PlayerState.Death;
     }
 
     public void Controls()
