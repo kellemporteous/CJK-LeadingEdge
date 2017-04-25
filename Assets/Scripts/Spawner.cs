@@ -10,7 +10,7 @@ public class Spawner : MonoBehaviour {
     public float enemySpawnTime;
     public float collectablesSpawnTime;
     public Transform[] birdSpawnPoints;
-    public float radius;
+    public int radius = 6;
     Camera cam;
 
     private GameObject player;
@@ -54,4 +54,4 @@ public class Spawner : MonoBehaviour {
 
         Instantiate(collectables[collectableTypeIndex] as GameObject, cam.ScreenToWorldPoint(new Vector3(spawnPosition.x, spawnPosition.y, 10)), spawnRotation);          
     }
-}
+    }

@@ -8,6 +8,7 @@ public class BaseEnemy : MonoBehaviour {
     public float moveSpeed;
     public Vector3 target;
     public float deathCounter;
+    public Vector2 tempPosition;
 
     public EnemyState enemyState;
 
@@ -27,6 +28,7 @@ public class BaseEnemy : MonoBehaviour {
     {
         StartCoroutine(LockOn());
         playerInfo = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        tempPosition = transform.position;
     }
 	
 	// Update is called once per frame

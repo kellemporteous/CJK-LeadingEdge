@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class CameraControls : MonoBehaviour {
 
@@ -61,7 +63,7 @@ public class CameraControls : MonoBehaviour {
 
         if (player.transform.position.y < bottomConstraint - buffer)
         {
-            playerInfo.Death();
+            SceneManager.LoadScene("Lose Screen");
         }
     }
 }
