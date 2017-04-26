@@ -19,15 +19,22 @@ public class UIManager : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-        player.heightTravelled = 0.0f;
+        var p = GameObject.FindGameObjectWithTag("Player");
+        if (p != null)
+        {
+            player = p.GetComponent<PlayerController>();
 
+            if (player != null)
+            {
+                player.heightTravelled = 0.0f;
+            }
+        }
     }
 
     // Update is called once per frame
     void Update ()
     {
-        if (height.text != null && player != null && staminaBar != null)
+        if (height != null && height.text != null && player != null && staminaBar != null)
         {
             height.text = "Height: " + player.heightTravelled;
             Pause();

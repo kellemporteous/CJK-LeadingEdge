@@ -77,9 +77,13 @@ public class GameManager : MonoBehaviour {
                 score = 0;
             }
         }
-        spawner.enabled = false;
-        UI.staminaBar.enabled = false;
-        player.staminaDrain = 0.0f;
+
+        if (spawner != null && UI != null && player != null)
+        {
+            spawner.enabled = false;
+            UI.staminaBar.enabled = false;
+            player.staminaDrain = 0.0f;
+        }
     }
 
     // Update is called once per frame
