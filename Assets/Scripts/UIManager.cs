@@ -27,9 +27,12 @@ public class UIManager : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
-        height.text = "Height: " + player.heightTravelled;
-        Pause();
-        staminaBar.value = player.currentStamia;
+        if (height.text != null && player != null && staminaBar != null)
+        {
+            height.text = "Height: " + player.heightTravelled;
+            Pause();
+            staminaBar.value = player.currentStamia;
+        }
 	}
 
     public void Pause()
