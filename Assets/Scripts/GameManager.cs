@@ -45,9 +45,18 @@ public class GameManager : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        UI = GameObject.FindGameObjectWithTag("UI Manager").GetComponent<UIManager>();
-        
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        var UIM = GameObject.FindGameObjectWithTag("UI Manager");
+        var p = GameObject.FindGameObjectWithTag("Player");
+
+        if (UIM != null)
+        {
+            UI = UIM.GetComponent<UIManager>();
+        }
+
+        if (p != null)
+        {
+            player = p.GetComponent<PlayerController>();
+        }
 
         if (PlayerPrefs.HasKey("Score"))
         {

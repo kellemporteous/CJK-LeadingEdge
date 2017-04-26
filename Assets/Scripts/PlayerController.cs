@@ -103,6 +103,7 @@ public class PlayerController : MonoBehaviour {
     public void Death()
     {
         playerState = PlayerState.Death;
+        
     }
 
     public void Controls()
