@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour {
     public float heightModifier;
     public float staminaDrain;
 
-    
+    GameManager gameManager;
 
     //public Vector3 lastPosition;
 
@@ -38,8 +38,8 @@ public class PlayerController : MonoBehaviour {
 
         //lastPosition = transform.position;
         rb = GetComponent<Rigidbody2D>();
+        gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
 
-        
         maxSpeed += moveSpeed * 1.5f;
         currentStamia = maxStamina;
     }
@@ -78,7 +78,11 @@ public class PlayerController : MonoBehaviour {
             isSwooping = false;
         }
 
-        Controls();
+        if (playerState != PlayerState.Death)
+        {
+            Controls();
+        }
+
     }
 
     void FixedUpdate()
@@ -103,6 +107,8 @@ public class PlayerController : MonoBehaviour {
     public void Death()
     {
         playerState = PlayerState.Death;
+        rb.isKinematic = false;
+        transform.Translate(Vector2.down * Time.deltaTime);
     }
 
     public void Controls()
