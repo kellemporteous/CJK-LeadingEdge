@@ -3,20 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SoundController : MonoBehaviour {
+    public static SoundController instance;
+
     AudioSource audioSource;
 
-    public AudioClip ballonPop;
+    public AudioClip balloonPop;
     public AudioClip birdChirp;
 
     // Use this for initialization
     void Start()
     {
+        instance = this;
         audioSource = GetComponent<AudioSource>();
     }
 
-    public void PlaySound(AudioClip clip)
+    public void BalloonPop()
     {
-        audioSource.PlayOneShot(clip);
+        audioSource.PlayOneShot(balloonPop);
+    }
+
+    public void BirdChirp()
+    {
+        audioSource.PlayOneShot(birdChirp);
     }
 
     // Update is called once per frame

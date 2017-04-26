@@ -107,6 +107,7 @@ public class PlayerController : MonoBehaviour {
     public void Death()
     {
         playerState = PlayerState.Death;
+        SoundController.instance.BalloonPop();
         rb.isKinematic = false;
         transform.Translate(Vector2.down * Time.deltaTime);
     }

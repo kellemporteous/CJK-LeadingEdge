@@ -97,6 +97,7 @@ public class BaseEnemy : MonoBehaviour {
 
             case EnemyState.Attack:
                 Movement();
+                //SoundController.instance.BirdChirp();
                 break;
         }
     }
@@ -105,7 +106,6 @@ public class BaseEnemy : MonoBehaviour {
     {
         if (other.tag == "Player")
         {
-            soundManager.PlaySound(soundManager.ballonPop);
             playerInfo.Death();
         }
     } 

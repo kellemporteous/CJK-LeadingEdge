@@ -42,7 +42,6 @@ public class Spawner : MonoBehaviour {
             int birdTypeIndex = Random.Range(0, birds.Length);
             // Create an instance of the enemy prefab at the randomly selected spawn point's position and rotation.
             Instantiate(birds[birdTypeIndex], birdSpawnPoints[spawnPointIndex].position, birdSpawnPoints[spawnPointIndex].rotation);
-
         }
     }
 
