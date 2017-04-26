@@ -46,6 +46,8 @@ public class Spawner : MonoBehaviour {
         }
     }
 
+    
+
     void SpawnCollectables()
     {
         Vector2 spawnPosition = new Vector2(Random.Range(0, Screen.width), Random.Range(0, Screen.height/2));
