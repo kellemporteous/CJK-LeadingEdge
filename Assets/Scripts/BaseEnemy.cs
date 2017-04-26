@@ -15,7 +15,7 @@ public class BaseEnemy : MonoBehaviour {
     public int minDistance = 6;
 
     PlayerController playerInfo;
-
+    SoundController soundManager;
 
     public enum EnemyState
     {
@@ -28,6 +28,7 @@ public class BaseEnemy : MonoBehaviour {
     {
         StartCoroutine(LockOn());
         playerInfo = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        soundManager = GameObject.FindGameObjectWithTag("Sound Manager").GetComponent<SoundController>();
         tempPosition = transform.position;
     }
 	
@@ -104,6 +105,7 @@ public class BaseEnemy : MonoBehaviour {
     {
         if (other.tag == "Player")
         {
+            soundManager.PlaySound(soundManager.ballonPop);
             playerInfo.Death();
         }
     } 
